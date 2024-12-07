@@ -1,8 +1,7 @@
 'use client'
 
-import * as React from 'react'
-
 import { type ClassValue, clsx } from 'clsx'
+import { useEffect, useState } from 'react'
 import { composeRenderProps } from 'react-aria-components'
 import { twMerge } from 'tailwind-merge'
 import { tv } from 'tailwind-variants'
@@ -43,9 +42,9 @@ const focusButtonStyles = tv({
 })
 
 const useMediaQuery = (query: string) => {
-  const [value, setValue] = React.useState(false)
+  const [value, setValue] = useState(false)
 
-  React.useEffect(() => {
+  useEffect(() => {
     const onChange = (event: MediaQueryListEvent) => {
       setValue(event.matches)
     }

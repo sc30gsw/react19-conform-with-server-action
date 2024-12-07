@@ -15,8 +15,14 @@ import {
 } from 'react-aria-components'
 import { tv } from 'tailwind-variants'
 
-import { Description, FieldError, FieldGroup, Input, Label } from './field'
-import { ctr, useMediaQuery } from './primitive'
+import {
+  Description,
+  FieldError,
+  FieldGroup,
+  Input,
+  Label,
+} from '@/components/ui/field'
+import { ctr, useMediaQuery } from '@/components/ui/primitive'
 
 const fieldBorderStyles = tv({
   base: 'group-focus:border-primary/70 forced-colors:border-[Highlight]',

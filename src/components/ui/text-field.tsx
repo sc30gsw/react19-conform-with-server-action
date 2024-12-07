@@ -1,7 +1,6 @@
 'use client'
 
-import * as React from 'react'
-
+// biome-ignore lint/correctness/noUndeclaredDependencies: TextInputDOMProps is not exported from @react-types/shared
 import type { TextInputDOMProps } from '@react-types/shared'
 import { IconEye, IconEyeClosed } from 'justd-icons'
 import {
@@ -10,16 +9,23 @@ import {
   type TextFieldProps as TextFieldPrimitiveProps,
 } from 'react-aria-components'
 
-import type { FieldProps } from './field'
-import { Description, FieldError, FieldGroup, Input, Label } from './field'
-import { Loader } from './loader'
-import { ctr } from './primitive'
+import type { FieldProps } from '@/components/ui/field'
+import {
+  Description,
+  FieldError,
+  FieldGroup,
+  Input,
+  Label,
+} from '@/components/ui/field'
+import { Loader } from '@/components/ui/loader'
+import { ctr } from '@/components/ui/primitive'
+import { type ReactNode, useState } from 'react'
 
 type InputType = Exclude<TextInputDOMProps['type'], 'password'>
 
 interface BaseTextFieldProps extends TextFieldPrimitiveProps, FieldProps {
-  prefix?: React.ReactNode
-  suffix?: React.ReactNode
+  prefix?: ReactNode
+  suffix?: ReactNode
   isPending?: boolean
   className?: string
 }
@@ -49,7 +55,7 @@ const TextField = ({
   type,
   ...props
 }: TextFieldProps) => {
-  const [isPasswordVisible, setIsPasswordVisible] = React.useState(false)
+  const [isPasswordVisible, setIsPasswordVisible] = useState(false)
   const inputType = isRevealable
     ? isPasswordVisible
       ? 'text'
@@ -80,7 +86,7 @@ const TextField = ({
             onPress={handleTogglePasswordVisibility}
             className="mr-2.5 relative [&>[data-slot=icon]]:text-muted-fg focus:outline-none focus-visible:ring-1 focus-visible:ring-primary rounded"
           >
-            <>{isPasswordVisible ? <IconEyeClosed /> : <IconEye />}</>
+            {isPasswordVisible ? <IconEyeClosed /> : <IconEye />}
           </ButtonPrimitive>
         ) : isPending ? (
           <Loader variant="spin" data-slot="suffix" />

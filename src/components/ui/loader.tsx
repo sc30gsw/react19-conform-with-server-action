@@ -1,13 +1,12 @@
 'use client'
 
-import * as React from 'react'
-
 import { IconLoader } from 'justd-icons'
 import { ProgressBar } from 'react-aria-components'
 import type { VariantProps } from 'tailwind-variants'
 import { tv } from 'tailwind-variants'
 
-import { cn } from './primitive'
+import { cn } from '@/components/ui/primitive'
+import { type ComponentPropsWithoutRef, type SVGProps, forwardRef } from 'react'
 
 const loaderStyles = tv({
   base: 'relative',
@@ -35,7 +34,8 @@ const loaderStyles = tv({
 
 type LoaderVariantProps = VariantProps<typeof loaderStyles>
 
-const Bars = ({ className, ...props }: React.SVGProps<SVGSVGElement>) => (
+const Bars = ({ className, ...props }: SVGProps<SVGSVGElement>) => (
+  // biome-ignore lint/a11y/noSvgWithoutTitle: this component is library code
   <svg
     className={cn('size-4', className)}
     data-slot="icon"
@@ -136,8 +136,9 @@ const Bars = ({ className, ...props }: React.SVGProps<SVGSVGElement>) => (
     </rect>
   </svg>
 )
-const Ring = (props: React.SVGProps<SVGSVGElement>) => <IconLoader {...props} />
-const Spin = ({ className, ...props }: React.SVGProps<SVGSVGElement>) => (
+const Ring = (props: SVGProps<SVGSVGElement>) => <IconLoader {...props} />
+const Spin = ({ className, ...props }: SVGProps<SVGSVGElement>) => (
+  // biome-ignore lint/a11y/noSvgWithoutTitle: this component is library code
   <svg
     className={cn('size-4', className)}
     data-slot="icon"
@@ -182,7 +183,7 @@ const DEFAULT_SPINNER = 'ring'
 
 interface LoaderProps
   extends Omit<
-      React.ComponentPropsWithoutRef<'svg'>,
+      ComponentPropsWithoutRef<'svg'>,
       'display' | 'opacity' | 'intent'
     >,
     LoaderVariantProps {
@@ -192,7 +193,7 @@ interface LoaderProps
   formatOptions?: Intl.NumberFormatOptions
 }
 
-const Loader = React.forwardRef<SVGSVGElement, LoaderProps>(
+const Loader = forwardRef<SVGSVGElement, LoaderProps>(
   ({ isIndeterminate = true, ...props }, ref) => {
     const {
       className,

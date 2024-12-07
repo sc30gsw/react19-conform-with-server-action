@@ -1,24 +1,23 @@
 'use client'
 
-import * as React from 'react'
-
 import type {
   RadioGroupProps as RadioGroupPrimitiveProps,
   RadioProps as RadioPrimitiveProps,
   ValidationResult,
 } from 'react-aria-components'
 import {
-  Radio as RadioPrimitive,
   RadioGroup as RadioGroupPrimitive,
+  Radio as RadioPrimitive,
 } from 'react-aria-components'
 import { tv } from 'tailwind-variants'
 
-import { Description, FieldError, Label } from './field'
-import { ctr } from './primitive'
+import { Description, FieldError, Label } from '@/components/ui/field'
+import { ctr } from '@/components/ui/primitive'
+import type { ReactNode } from 'react'
 
 interface RadioGroupProps extends Omit<RadioGroupPrimitiveProps, 'children'> {
   label?: string
-  children?: React.ReactNode
+  children?: ReactNode
   description?: string
   errorMessage?: string | ((validation: ValidationResult) => string)
 }
@@ -90,7 +89,7 @@ const Radio = ({ description, ...props }: RadioProps) => {
               })}
             />
             <div className="flex flex-col gap-1">
-              {props.children as React.ReactNode}
+              {props.children as ReactNode}
               {description && (
                 <Description className="block">{description}</Description>
               )}

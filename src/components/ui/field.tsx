@@ -1,7 +1,5 @@
 'use client'
 
-import * as React from 'react'
-
 import type {
   FieldErrorProps,
   GroupProps,
@@ -20,7 +18,8 @@ import {
 } from 'react-aria-components'
 import { tv } from 'tailwind-variants'
 
-import { cn, ctr } from './primitive'
+import { cn, ctr } from '@/components/ui/primitive'
+import { forwardRef } from 'react'
 
 interface FieldProps {
   label?: string
@@ -90,7 +89,7 @@ const FieldGroup = ({ className, ...props }: GroupProps) => {
   )
 }
 
-const Input = React.forwardRef<HTMLInputElement, InputProps>(
+const Input = forwardRef<HTMLInputElement, InputProps>(
   ({ className, ...props }, ref) => {
     return (
       <InputPrimitive

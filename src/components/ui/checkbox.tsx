@@ -1,19 +1,18 @@
 'use client'
 
-import * as React from 'react'
-
 import { IconCheck, IconMinus } from 'justd-icons'
 import {
-  Checkbox as CheckboxPrimitive,
   CheckboxGroup as CheckboxGroupPrimitive,
   type CheckboxGroupProps as CheckboxGroupPrimitiveProps,
+  Checkbox as CheckboxPrimitive,
   type CheckboxProps as CheckboxPrimitiveProps,
   type ValidationResult,
 } from 'react-aria-components'
 import { tv } from 'tailwind-variants'
 
-import { Description, FieldError, Label } from './field'
-import { cn, cr, ctr } from './primitive'
+import { Description, FieldError, Label } from '@/components/ui/field'
+import { cn, cr, ctr } from '@/components/ui/primitive'
+import type { ReactNode } from 'react'
 
 interface CheckboxGroupProps extends CheckboxGroupPrimitiveProps {
   label?: string
@@ -28,7 +27,7 @@ const CheckboxGroup = (props: CheckboxGroupProps) => {
       className={ctr(props.className, 'flex flex-col gap-y-2')}
     >
       <Label>{props.label}</Label>
-      <>{props.children as React.ReactNode}</>
+      {props.children as ReactNode}
       {props.description && (
         <Description className="block">{props.description}</Description>
       )}
@@ -108,7 +107,7 @@ const Checkbox = ({ className, ...props }: CheckboxProps) => {
               {props.label ? (
                 <Label>{props.label}</Label>
               ) : (
-                (props.children as React.ReactNode)
+                (props.children as ReactNode)
               )}
               {props.description && (
                 <Description>{props.description}</Description>
