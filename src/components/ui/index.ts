@@ -6,3 +6,5 @@ export * from './loader'
 export * from './checkbox'
 export * from './number-field'
 export * from './radio'
+export * from './card';
+export * from './heading';

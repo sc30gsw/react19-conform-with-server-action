@@ -25,7 +25,7 @@ const RootLayout = ({ children }: { children: ReactNode }) => {
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        {children}
+        <main className="min-h-dvh w-screen">{children}</main>
       </body>
     </html>
   )
