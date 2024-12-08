@@ -160,9 +160,6 @@ export const SignUpCard = () => {
           </Button>
         </Card.Footer>
       </Form>
-      {/* <Button onPress={() => toast('Success', { description: 'hoge' })}>
-        hoge
-      </Button> */}
     </Card>
   )
 }
