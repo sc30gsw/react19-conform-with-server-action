@@ -48,7 +48,8 @@
         "default.tsx",
         "route.ts",
         "lib/fetcher.ts",
-        "src/components/ui/index.ts"
+        "src/components/ui/index.ts",
+        "src/types/*.ts"
       ],
       "linter": {
         "rules": {
