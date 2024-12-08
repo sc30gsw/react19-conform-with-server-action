@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import localFont from 'next/font/local'
 import './globals.css'
+import { Providers } from '@/components/providers'
 import type { ReactNode } from 'react'
 
 const geistSans = localFont({
@@ -25,7 +26,9 @@ const RootLayout = ({ children }: { children: ReactNode }) => {
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        {children}
+        <Providers>
+          <main className="min-h-dvh w-screen">{children}</main>
+        </Providers>
       </body>
     </html>
   )
