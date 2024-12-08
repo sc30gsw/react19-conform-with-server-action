@@ -27,7 +27,7 @@ export const signUpSchema = z.object({
       required_error: 'Agreement is required',
       message: 'Please check',
     })
-    .refine((val) => val !== 'on', {
+    .refine((val) => val === 'on', {
       message: 'Please check',
     }),
 })
