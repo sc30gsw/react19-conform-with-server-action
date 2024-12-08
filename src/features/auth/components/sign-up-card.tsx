@@ -6,6 +6,7 @@ import {
   Card,
   Checkbox,
   Form,
+  Loader,
   Radio,
   RadioGroup,
   TextField,
@@ -99,43 +100,53 @@ export const SignUpCard = () => {
               {getCollectionProps(fields.gender, {
                 type: 'radio',
                 options: ['male', 'female', 'other'],
-              }).map((props) => (
-                <Radio
-                  key={props.id}
-                  value={props.value}
-                  isDisabled={isPending}
-                >
-                  {props.value}
-                </Radio>
-              ))}
+              }).map((props) => {
+                const { key, ...rest } = props
+
+                return (
+                  <Radio
+                    key={key}
+                    {...rest}
+                    value={props.value}
+                    isDisabled={isPending}
+                  >
+                    {props.value}
+                  </Radio>
+                )
+              })}
             </RadioGroup>
             <ErrorMessage
               errorId={fields.gender.errorId}
               errors={fields.gender.errors}
             />
           </div>
-          <div className="flex justify-between items-center">
+          <div>
             {getCollectionProps(fields.isAgree, {
               type: 'checkbox',
               options: ['on'],
-            }).map((props) => (
-              <Checkbox
-                key={props.id}
-                name={fields.isAgree.name}
-                isSelected={props.value === fields.isAgree.value}
-                onChange={(checked) => {
-                  form.update({
-                    name: fields.isAgree.name,
-                    value: checked ? 'on' : 'off',
-                  })
-                }}
-                value={props.value}
-                isDisabled={isPending}
-              >
-                I agree to the terms and conditions
-                {props.value}
-              </Checkbox>
-            ))}
+            }).map((props) => {
+              const { key, ...rest } = props
+
+              return (
+                <Checkbox
+                  key={key}
+                  {...rest}
+                  name={fields.isAgree.name}
+                  isSelected={props.value === fields.isAgree.value}
+                  onChange={(checked) => {
+                    form.update({
+                      name: fields.isAgree.name,
+                      value: checked ? 'on' : 'off',
+                    })
+                  }}
+                  value={props.value}
+                  isDisabled={isPending}
+                >
+                  I agree to the terms and conditions
+                  {props.value}
+                </Checkbox>
+              )
+            })}
             <ErrorMessage
               errorId={fields.isAgree.errorId}
               errors={fields.isAgree.errors}
@@ -145,9 +156,13 @@ export const SignUpCard = () => {
         <Card.Footer>
           <Button type="submit" className="w-full" isDisabled={isPending}>
             Sign Up
+            {isPending && <Loader className="ml-2" variant="spin" />}
           </Button>
         </Card.Footer>
       </Form>
+      {/* <Button onPress={() => toast('Success', { description: 'hoge' })}>
+        hoge
+      </Button> */}
     </Card>
   )
 }

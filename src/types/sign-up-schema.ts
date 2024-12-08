@@ -23,8 +23,13 @@ export const signUpSchema = z.object({
     })
     .default('other'),
   isAgree: z
-    .boolean({ required_error: 'Agreement is required' })
-    .default(false),
+    .enum(['on', 'off'], {
+      required_error: 'Agreement is required',
+      message: 'Please check',
+    })
+    .refine((val) => val !== 'on', {
+      message: 'Please check',
+    }),
 })
 
 export type SignUpSchemaType = z.infer<typeof signUpSchema>
