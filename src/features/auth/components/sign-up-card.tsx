@@ -33,6 +33,13 @@ export const SignUpCard = () => {
     onValidate({ formData }) {
       return parseWithZod(formData, { schema: signUpSchema })
     },
+    defaultValue: {
+      email: '',
+      password: '',
+      age: 0,
+      gender: 'other',
+      isAgree: 'off',
+    },
   })
 
   return (
@@ -89,7 +96,6 @@ export const SignUpCard = () => {
               label="Gender"
               name={fields.gender.name}
               value={fields.gender.value}
-              defaultValue={'other'}
               onChange={(value) => {
                 form.update({
                   name: fields.gender.name,
